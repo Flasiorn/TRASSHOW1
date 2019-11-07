@@ -1,0 +1,101 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class Cronometro : MonoBehaviour {
+
+    [SerializeField]
+    private Text texto;
+    private float tempo;
+    private float vel = 1;
+
+   // bool jogo;
+
+
+    [SerializeField]
+    private GameObject srank;
+
+    [SerializeField]
+    private GameObject arank;
+
+    [SerializeField]
+    private GameObject brank;
+
+    [SerializeField]
+    private GameObject crank;
+
+    [SerializeField]
+    private GameObject drank;
+
+    [SerializeField]
+    private GameObject derr;
+
+ 
+    void Start () {
+        texto = GetComponent<Text>();
+	}
+
+
+    
+
+
+    void Update () {
+
+
+        tempo += Time.deltaTime * vel;
+        string minut = Mathf.Floor((tempo % 3600) / 60).ToString("00");
+
+        string sec = (tempo % 60).ToString("00");
+
+        texto.text = minut + ":" +sec;
+
+
+
+        if (minut == ("30"))
+        {
+            derr.SetActive(true);
+        }
+       
+        
+
+        /*condicao de vitoria 
+
+        if(o objeto for pego && tempo < 30.0)
+        {
+            Pontuacao();
+        }*/
+
+    }
+
+    public void Pontuacao()
+    {
+        if(tempo <= 8.0f)
+        {
+            srank.SetActive(true);
+
+        }
+
+        if (tempo >= 8.50f && tempo <= 10.0)
+        {
+            arank.SetActive(true);
+        }
+
+        if (tempo >= 10.50f && tempo <= 15.0)
+        {
+            brank.SetActive(true);
+        }
+
+        if (tempo >= 15.50f && tempo <= 20.0)
+        {
+            crank.SetActive(true);
+        }
+
+         if (tempo >= 20.50f && tempo <= 25.0)
+        {
+            drank.SetActive(true);
+        }
+    }
+
+    
