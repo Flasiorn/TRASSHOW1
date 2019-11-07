@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MenuP : MonoBehaviour {
+
+    [SerializeField]
+    private GameObject controles;
+    [SerializeField]
+    private GameObject voltar;
+    
+    public void IniciarJogo(){
+
+        SceneManager.LoadScene("TRASHSHOW");
+        Debug.Log("Inicio jogo");
+
+    }
+
+    public void Control()
+    {
+        controles.SetActive(true); 
+    }
+
+    public void Voltar()
+    {
+        voltar.SetActive(false);
+    }
+    public void FecharJogo()
+    {
+
+       
+    
+        Application.Quit();
+
+        Debug.Log("Jogo fechado");
+
+
+
+    }
+}
