@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class quest : MonoBehaviour {
+
+    public GameObject telinha;
+    bool questinicio;
+    public static bool questcomeço;
+    bool questfinal;
+    public GameObject telacomple;
+
+
+    void Start () {
+        telinha.SetActive(false);                //hud entra como falso no game
+        questcomeço = false;
+        telacomple.SetActive(false);             
+	}
+	
+	
+	void Update () {
+		if(Input.GetKeyDown(KeyCode.Space)&& questinicio)        //quando aperta espaço e tbm sentir a colisao do player hud ativa
+        {
+            telinha.SetActive(true);
+            questcomeço = true;
+        }
+        if(coleta.item == 2)
+        {
+            questfinal = true;
+        }
+
+    }
+
+
+    void OnCollisionEnter(Collision hit)         //quando sentir a colisão ele habilita questinicio
+    {
+        if(hit.gameObject.tag == "Player")
+        {
+              questinicio = true;
+        }
+        if (hit.gameObject.tag == "Player" && questfinal)
+        {
+
+            telacomple.SetActive(true);
+        }
+    }
+    void OnCollisionExit(Collision hit)            //quando sair de perto do NPC some o hud de mensagem
+    {
+        if (hit.gameObject.tag == "Player")
+        {
+            telinha.SetActive(false);
+            questinicio = false;
+            telacomple.SetActive(false);
+        }
+    }
+
+}
